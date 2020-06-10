@@ -71,6 +71,7 @@ public class DailyTimeEntry {
 
     public void setRegHours(double regHours) {
         this.regHours = regHours;
+        System.out.println("Kim you're in setRegHours");
     }
 
     public double getOvertimeHours() {
@@ -144,4 +145,5 @@ public class DailyTimeEntry {
     public void setTimeSheet(TimeSheet timeSheet) {
         this.timeSheet = timeSheet;
     }
+
 }

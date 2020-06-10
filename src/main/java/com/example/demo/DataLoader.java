@@ -62,7 +62,7 @@ public class DataLoader implements CommandLineRunner {
         employeeRepository.save(ashu);
         employeeRepository.save(bilen);
         employeeRepository.save(kim);
-        managerSue.setEmp_id(empSue.getId());
+        managerSue.setEmpId(empSue.getId());
         managerRepository.save(managerSue);
 
         TimeSheet ashuTimeSheet1 = new TimeSheet(LocalDate.of(2020, 5, 24),

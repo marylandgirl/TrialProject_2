@@ -20,4 +20,5 @@ public class AuditTrail {
 
     private int stage;                   //created=1,edited=2,approved=3,rejected=4,archived=5
 
+
 }
