@@ -62,6 +62,7 @@ public class TimeSheetController {
             Employee emp = employeeRepository.findByUserName("kim");
             timesheet.setEmployee(emp);
         DailyTimeEntry[] dailyTimeEntries  = weeklyTimeEntry.updateDailyEntries(monday, sunday, timesheet);
+
         for (int i = 0; i < dailyTimeEntries.length; i++) {
             try {
                 timesheet.getDailyTimeEntrySet().add(dailyTimeEntries[i]);
@@ -71,6 +72,7 @@ public class TimeSheetController {
                 System.out.println(e.getMessage());
             }
         }
+
         return "index";
     }
 }

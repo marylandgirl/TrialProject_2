@@ -234,7 +234,7 @@ public class TimeSheet {
 
     public void updateCompTimeUsedHours(double compTimeUsedHours) {
 
-        this.compTimeUsedHours = compTimeUsedHours;
+        this.compTimeUsedHours += compTimeUsedHours;
     }
 
     public Set<DailyTimeEntry> getDailyTimeEntrySet() {

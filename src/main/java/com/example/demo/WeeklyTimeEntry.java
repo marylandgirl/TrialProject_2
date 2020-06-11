@@ -250,7 +250,7 @@ public class WeeklyTimeEntry {
                 Duration diff = Duration.between(startTime,endTime);
                 double overtimeHours = ((double) diff.toMinutes()/60.0);
                 dailyTimeEntries[i].setOvertimeHours(overtimeHours);
-                dailyTimeEntries[i].getTimeSheet().updateOvertimeHours(overtimeHours);
+                timeSheet.updateOvertimeHours(overtimeHours);
             } catch (Exception e){
                 e.getMessage();
             }
@@ -261,7 +261,7 @@ public class WeeklyTimeEntry {
                 Duration diff = Duration.between(startTime,endTime);
                 double holidayHours = ((double) diff.toMinutes()/60.0);
                 dailyTimeEntries[i].setHolidayHours(holidayHours);
-                dailyTimeEntries[i].getTimeSheet().updateHolidayHours(holidayHours);
+                timeSheet.updateHolidayHours(holidayHours);
             } catch (Exception e){
                 e.getMessage();
             }
@@ -272,8 +272,7 @@ public class WeeklyTimeEntry {
                 Duration diff = Duration.between(startTime,endTime);
                 double holidayWorkedHours = ((double) diff.toMinutes()/60.0);
                 dailyTimeEntries[i].setHolidayWorkedHours(holidayWorkedHours);
-                dailyTimeEntries[i].getTimeSheet().updateHolidayWorkedHours(holidayWorkedHours);
-
+                timeSheet.updateHolidayWorkedHours(holidayWorkedHours);
             } catch (Exception e){
                 e.getMessage();
             }
@@ -284,8 +283,7 @@ public class WeeklyTimeEntry {
                 Duration diff = Duration.between(startTime,endTime);
                 double leaveNoPayHours = ((double) diff.toMinutes()/60.0);
                 dailyTimeEntries[i].setLeaveNoPayHours(leaveNoPayHours);
-                dailyTimeEntries[i].getTimeSheet().updateLeaveNoPayHours(leaveNoPayHours);
-
+                timeSheet.updateLeaveNoPayHours(leaveNoPayHours);
             } catch (Exception e){
                 e.getMessage();
             }
@@ -296,8 +294,7 @@ public class WeeklyTimeEntry {
                 Duration diff = Duration.between(startTime,endTime);
                 double compTimeEarnedHours = ((double) diff.toMinutes()/60.0);
                 dailyTimeEntries[i].setCompTimeEarnedHours(compTimeEarnedHours);
-                dailyTimeEntries[i].getTimeSheet().updateCompTimeEarnedHours(compTimeEarnedHours);
-
+                timeSheet.updateCompTimeEarnedHours(compTimeEarnedHours);
             } catch (Exception e){
                 e.getMessage();
             }
@@ -308,8 +305,7 @@ public class WeeklyTimeEntry {
                 Duration diff = Duration.between(startTime,endTime);
                 double leaveHours = ((double) diff.toMinutes()/60.0);
                 dailyTimeEntries[i].setLeaveHours(leaveHours);
-                dailyTimeEntries[i].getTimeSheet().updateAnnualLeaveHours(leaveHours);
-
+                timeSheet.updateAnnualLeaveHours(leaveHours);
             } catch (Exception e){
                 e.getMessage();
             }
@@ -320,8 +316,7 @@ public class WeeklyTimeEntry {
                 Duration diff = Duration.between(startTime,endTime);
                 double holidayOTHours = ((double) diff.toMinutes()/60.0);
                 dailyTimeEntries[i].setHolidayOTHours(holidayOTHours);
-                dailyTimeEntries[i].getTimeSheet().updateHolidayOTHours(holidayOTHours);
-
+                timeSheet.updateHolidayOTHours(holidayOTHours);
             } catch (Exception e){
                 e.getMessage();
             }
@@ -332,7 +327,7 @@ public class WeeklyTimeEntry {
                 Duration diff = Duration.between(startTime,endTime);
                 double compTimeUsedHours = ((double) diff.toMinutes()/60.0);
                 dailyTimeEntries[i].setCompTimeUsedHours(compTimeUsedHours);
-                dailyTimeEntries[i].getTimeSheet().updateCompTimeUsedHours(compTimeUsedHours);
+                timeSheet.updateCompTimeUsedHours(compTimeUsedHours);
             } catch (Exception e){
                 e.getMessage();
             }

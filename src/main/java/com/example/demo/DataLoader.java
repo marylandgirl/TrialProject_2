@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Set;
 
 @Controller
 public class DataLoader implements CommandLineRunner {
@@ -37,6 +38,8 @@ public class DataLoader implements CommandLineRunner {
         Manager managerOfSue = new Manager(new HashSet<Employee>());
         managerRepository.save(managerOfSue);
 
+        Set<Employee> employeeSet = new HashSet<Employee>();
+
         Employee empSue = new Employee("sue", "Han", "Sue",
                 "sue@mc.edu", 200.00, managerOfSue, new HashSet<TimeSheet>());
 
@@ -51,11 +54,10 @@ public class DataLoader implements CommandLineRunner {
         Employee kim = new Employee("kim", "Levin", "Kim",
                 "kim@mc.edu", 100.00, managerSue, new HashSet<TimeSheet>());
 
-        managerSue.getEmployeeSet().add(ashu);
-        managerSue.getEmployeeSet().add(bilen);
-        managerSue.getEmployeeSet().add(kim);
-
-
+        employeeSet.add(ashu);
+        employeeSet.add(bilen);
+        employeeSet.add(kim);
+        managerSue.setEmployeeSet(employeeSet);
 
         managerRepository.save(managerSue);
         employeeRepository.save(empSue);
