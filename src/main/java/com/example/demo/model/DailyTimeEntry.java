@@ -146,4 +146,13 @@ public class DailyTimeEntry {
         this.timeSheet = timeSheet;
     }
 
+    public String toString() {
+        return "Work date: " + workDate + " Regular hours: " +
+                regHours + " Overtime Hours: " + overtimeHours + " Holiday hours: " +
+                holidayHours + " Holiday hours worked: " + holidayWorkedHours +
+                " Holiday OT hours: " + holidayOTHours + " Leave W/O Pay hours: " + leaveNoPayHours +
+                " Comp time earned hours: "  + compTimeEarnedHours + " Comp time used hours: " +
+                compTimeUsedHours + " Leave hours: " + leaveHours;
+    }
+
 }

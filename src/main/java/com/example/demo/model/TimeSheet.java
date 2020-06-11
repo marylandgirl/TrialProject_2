@@ -194,6 +194,49 @@ public class TimeSheet {
         this.enabled = enabled;
     }
 
+    public void updateRegHours(double regHours) {
+
+        this.regHours += regHours;
+    }
+
+    public void updateOvertimeHours(double overtimeHours) {
+
+        this.overtimeHours += overtimeHours;
+    }
+
+    public void updateHolidayHours(double holidayHours) {
+
+        this.holidayHours += holidayHours;
+    }
+
+    public void updateHolidayWorkedHours(double holidayWorkedHours) {
+        this.holidayWorkedHours += holidayWorkedHours;
+    }
+
+    public void updateLeaveNoPayHours(double leaveNoPayHours) {
+
+        this.leaveNoPayHours += leaveNoPayHours;
+    }
+
+    public void updateCompTimeEarnedHours(double compTimeEarnedHours) {
+        this.compTimeEarnedHours += compTimeEarnedHours;
+    }
+
+    public void updateAnnualLeaveHours(double annualLeaveHours) {
+
+        this.annualLeaveHours += annualLeaveHours;
+    }
+
+    public void updateHolidayOTHours(double holidayOTHours) {
+
+        this.holidayOTHours = holidayOTHours;
+    }
+
+    public void updateCompTimeUsedHours(double compTimeUsedHours) {
+
+        this.compTimeUsedHours = compTimeUsedHours;
+    }
+
     public Set<DailyTimeEntry> getDailyTimeEntrySet() {
         return dailyTimeEntrySet;
     }
@@ -202,4 +245,14 @@ public class TimeSheet {
         this.dailyTimeEntrySet = dailyTimeEntrySet;
     }
 
+    public String toString() {
+        return "Start date: " + startDate + " End date: " + endDate + " Employee: " +
+                employee.getFirstName() + " " + employee.getLastName() + " Regular hours: " +
+                regHours + " Overtime hours: " + overtimeHours + " Holiday hours: " +
+                holidayHours + " Holiday hours worked: " +
+                holidayWorkedHours + " Holiday OT hours: " + holidayOTHours +
+                " Leave W/O pay hours: " + leaveNoPayHours +
+                " Comp time earned hours: " + compTimeEarnedHours +
+                " Annual leave hours: " + annualLeaveHours;
+    }
 }

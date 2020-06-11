@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import com.example.demo.model.DailyTimeEntry;
+import com.example.demo.model.Employee;
 import com.example.demo.model.TimeSheet;
 import org.apache.tomcat.jni.Local;
 
@@ -218,32 +219,131 @@ public class WeeklyTimeEntry {
         Arrays.setAll(holidayOTEnd,i->"__:__ __");
     }
 
-    public boolean updateDailyEntries(LocalDate begDate, LocalDate endDate, TimeSheet timeSheet) {
+    public DailyTimeEntry[] updateDailyEntries(LocalDate begDate, LocalDate endDate, TimeSheet tSheet) {
+        TimeSheet timeSheet = tSheet;
         DailyTimeEntry[] dailyTimeEntries = new DailyTimeEntry[7];
+        timeSheet.setStartDate(begDate);
+        timeSheet.setEndDate(endDate);
+        timeSheet.setEnabled(true);
         for ( int i = 0; i < DAYS_PER_PAY_PERIOD; i++) {
+            dailyTimeEntries[i] = new DailyTimeEntry();
+            //***For testing to get around null pointer exception****
+     /*       timeSheet.setRejectMsg("All is Good");
+            timeSheet.setEmployee(new Employee());*/
+            //************
+            dailyTimeEntries[i].setWorkDate(begDate.plusDays(i));
             try {
                 LocalTime startTime = LocalTime.parse(regTimeStart[i]);
                 LocalTime endTime = LocalTime.parse(regTimeEnd[i]);
                 Duration diff = Duration.between(startTime,endTime);
-                double regHoursWorked = ((double) diff.toMinutes()/60.0);
-                System.out.println("Kim the total time entry is for regular hours is"
-                        + regHoursWorked + " for " + begDate.plusDays(i));
-                dailyTimeEntries[i].setRegHours(regHoursWorked);
+                double regHours = ((double) diff.toMinutes()/60.0);
+                dailyTimeEntries[i].setRegHours(regHours);
+              //  dailyTimeEntries[i].getTimeSheet().updateRegHours(regHours);
+                timeSheet.updateRegHours(regHours);
             } catch (Exception e){
                 e.getMessage();
             }
+
             try {
                 LocalTime startTime = LocalTime.parse(overtimeStart[i]);
                 LocalTime endTime = LocalTime.parse(overtimeEnd[i]);
                 Duration diff = Duration.between(startTime,endTime);
-                double overtimeWorked = ((double) diff.toMinutes()/60.0);
-                System.out.println("Kim the total time entry is "
-                        + overtimeWorked + " for " + begDate.plusDays(i));
-                dailyTimeEntries[i].setOvertimeHours(overtimeWorked);
+                double overtimeHours = ((double) diff.toMinutes()/60.0);
+                dailyTimeEntries[i].setOvertimeHours(overtimeHours);
+                dailyTimeEntries[i].getTimeSheet().updateOvertimeHours(overtimeHours);
             } catch (Exception e){
                 e.getMessage();
             }
+
+            try {
+                LocalTime startTime = LocalTime.parse(paidHdyStart[i]);
+                LocalTime endTime = LocalTime.parse(paidHdyEnd[i]);
+                Duration diff = Duration.between(startTime,endTime);
+                double holidayHours = ((double) diff.toMinutes()/60.0);
+                dailyTimeEntries[i].setHolidayHours(holidayHours);
+                dailyTimeEntries[i].getTimeSheet().updateHolidayHours(holidayHours);
+            } catch (Exception e){
+                e.getMessage();
+            }
+
+            try {
+                LocalTime startTime = LocalTime.parse(hdyWorkedStart[i]);
+                LocalTime endTime = LocalTime.parse(hdyWorkedEnd[i]);
+                Duration diff = Duration.between(startTime,endTime);
+                double holidayWorkedHours = ((double) diff.toMinutes()/60.0);
+                dailyTimeEntries[i].setHolidayWorkedHours(holidayWorkedHours);
+                dailyTimeEntries[i].getTimeSheet().updateHolidayWorkedHours(holidayWorkedHours);
+
+            } catch (Exception e){
+                e.getMessage();
+            }
+
+            try {
+                LocalTime startTime = LocalTime.parse(leaveWOPayStart[i]);
+                LocalTime endTime = LocalTime.parse(leaveWOPayEnd[i]);
+                Duration diff = Duration.between(startTime,endTime);
+                double leaveNoPayHours = ((double) diff.toMinutes()/60.0);
+                dailyTimeEntries[i].setLeaveNoPayHours(leaveNoPayHours);
+                dailyTimeEntries[i].getTimeSheet().updateLeaveNoPayHours(leaveNoPayHours);
+
+            } catch (Exception e){
+                e.getMessage();
+            }
+
+            try {
+                LocalTime startTime = LocalTime.parse(compTimeEarnedStart[i]);
+                LocalTime endTime = LocalTime.parse(compTimeEarnedEnd[i]);
+                Duration diff = Duration.between(startTime,endTime);
+                double compTimeEarnedHours = ((double) diff.toMinutes()/60.0);
+                dailyTimeEntries[i].setCompTimeEarnedHours(compTimeEarnedHours);
+                dailyTimeEntries[i].getTimeSheet().updateCompTimeEarnedHours(compTimeEarnedHours);
+
+            } catch (Exception e){
+                e.getMessage();
+            }
+
+            try {
+                LocalTime startTime = LocalTime.parse(annualLeaveStart[i]);
+                LocalTime endTime = LocalTime.parse(annualLeaveEnd[i]);
+                Duration diff = Duration.between(startTime,endTime);
+                double leaveHours = ((double) diff.toMinutes()/60.0);
+                dailyTimeEntries[i].setLeaveHours(leaveHours);
+                dailyTimeEntries[i].getTimeSheet().updateAnnualLeaveHours(leaveHours);
+
+            } catch (Exception e){
+                e.getMessage();
+            }
+
+            try {
+                LocalTime startTime = LocalTime.parse(holidayOTStart[i]);
+                LocalTime endTime = LocalTime.parse(holidayOTEnd[i]);
+                Duration diff = Duration.between(startTime,endTime);
+                double holidayOTHours = ((double) diff.toMinutes()/60.0);
+                dailyTimeEntries[i].setHolidayOTHours(holidayOTHours);
+                dailyTimeEntries[i].getTimeSheet().updateHolidayOTHours(holidayOTHours);
+
+            } catch (Exception e){
+                e.getMessage();
+            }
+
+            try {
+                LocalTime startTime = LocalTime.parse(compTimeUsedStart[i]);
+                LocalTime endTime = LocalTime.parse(compTimeUsedEnd[i]);
+                Duration diff = Duration.between(startTime,endTime);
+                double compTimeUsedHours = ((double) diff.toMinutes()/60.0);
+                dailyTimeEntries[i].setCompTimeUsedHours(compTimeUsedHours);
+                dailyTimeEntries[i].getTimeSheet().updateCompTimeUsedHours(compTimeUsedHours);
+            } catch (Exception e){
+                e.getMessage();
+            }
+
+            try {
+                dailyTimeEntries[i].setWorkDate(begDate.plusDays(i));
+                dailyTimeEntries[i].setTimeSheet(timeSheet);
+            } catch (Exception err) {
+                err.getMessage();
+            }
         }
-        return false;
+        return dailyTimeEntries;
     }
 }

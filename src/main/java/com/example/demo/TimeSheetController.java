@@ -1,8 +1,10 @@
 package com.example.demo;
 
 import com.example.demo.model.DailyTimeEntry;
+import com.example.demo.model.Employee;
 import com.example.demo.model.TimeSheet;
 import com.example.demo.repository.DailyTimeEntryRepository;
+import com.example.demo.repository.EmployeeRepository;
 import com.example.demo.repository.TimeSheetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,6 +34,9 @@ public class TimeSheetController {
     @Autowired
     TimeSheetRepository timeSheetRepository;
 
+    @Autowired
+    EmployeeRepository employeeRepository;
+
     private LocalDate monday = LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
     private LocalDate sunday = monday.plusDays(6);
 
@@ -53,7 +58,19 @@ public class TimeSheetController {
             TimeSheet timesheet = new TimeSheet();
             timesheet.setStartDate(monday);
             timesheet.setEndDate(sunday);
-            boolean updateDoneOK = weeklyTimeEntry.updateDailyEntries(monday, sunday, timesheet);
+            timesheet.setRejectMsg("All is Good");
+            Employee emp = employeeRepository.findByUserName("kim");
+            timesheet.setEmployee(emp);
+        DailyTimeEntry[] dailyTimeEntries  = weeklyTimeEntry.updateDailyEntries(monday, sunday, timesheet);
+        for (int i = 0; i < dailyTimeEntries.length; i++) {
+            try {
+                timesheet.getDailyTimeEntrySet().add(dailyTimeEntries[i]);
+                timeSheetRepository.save(timesheet);
+   //             dailyTimeEntryRepository.save(dailyTimeEntries[i]);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
         return "index";
     }
 }
